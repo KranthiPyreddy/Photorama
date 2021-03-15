@@ -5,7 +5,9 @@ import Foundation
 //Creating the Photo class & Conforming Photo to Codable
 class Photo: Codable {
 let title: String
-let remoteURL: URL
+//let remoteURL: URL
+//Making the remoteURL optional/ By default Photo has non-optional properties
+let remoteURL: URL?
 let photoID: String
 let dateTaken: Date
 //Adding coding keys to the Photo class

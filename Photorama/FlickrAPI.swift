@@ -71,9 +71,18 @@ struct FlickrAPI {
     {
     do {
     let decoder = JSONDecoder()
+    //Adding a custom date decoding strategy
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+    decoder.dateDecodingStrategy = .formatted(dateFormatter)
     let flickrResponse = try
     decoder.decode(FlickrResponse.self, from: data)
-    return .success(flickrResponse.photosInfo.photos)
+    //return .success(flickrResponse.photosInfo.photos)
+    //Filtering out photos with a missing URL
+    let photos = flickrResponse.photosInfo.photos.filter { $0.remoteURL != nil }
+        return .success(photos)
     } catch {
     return .failure(error)
     }
