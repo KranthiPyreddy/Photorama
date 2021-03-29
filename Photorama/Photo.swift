@@ -18,3 +18,10 @@ let dateTaken: Date
     case dateTaken = "datetaken"
     }
 }
+//Defining Photo equality
+extension Photo: Equatable {
+static func == (lhs: Photo, rhs: Photo) -> Bool {
+// Two Photos are the same if they have the same photoID
+return lhs.photoID == rhs.photoID
+}
+}
