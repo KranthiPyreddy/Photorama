@@ -59,7 +59,7 @@ struct FlickrAPI {
     struct FlickrPhotosResponse: Codable {
     //let photo: [Photo]
     //Adding coding keys to the response structures
-        let photos: [Photo]
+        let photos: [FlickrPhoto]
         enum CodingKeys: String, CodingKey {
         case photos = "photo"
         }
@@ -67,7 +67,7 @@ struct FlickrAPI {
     /* A method that takes in an instance of Data and uses the JSONDecoder
      class to convert the data into an instance of FlickrResponse */
     //Decoding the JSON data
-    static func photos(fromJSON data: Data) -> Result<[Photo], Error>
+    static func photos(fromJSON data: Data) -> Result<[FlickrPhoto], Error>
     {
     do {
     let decoder = JSONDecoder()
